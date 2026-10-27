@@ -1,0 +1,9 @@
+{
+  "name": "campuspulse",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "setup": "npm install --prefix backend",
+    "start": "npm start --prefix backend"
+  }
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "id": "mvq6n9hmao34",
+    "name": "Campus Admin",
+    "email": "admin@campus.com",
+    "role": "admin",
+    "password": "$2a$10$19iplgMNDM21JFK5mm0CW.5MFsZajB95WxmhVpZGAHXJJsA1/D622"
+  },
+  {
+    "id": "mvq6n9kswbi3",
+    "name": "Electrical Team",
+    "email": "electrical@campus.com",
+    "role": "staff",
+    "dept": "Electrical",
+    "password": "$2a$10$HUgPPhjR/Rpg68Q1xwnkOu9rch62o6tS8sU8Z/POOHWEPDWgbJjr."
+  },
+  {
+    "id": "mvq6n9no5b5t",
+    "name": "IT Team",
+    "email": "it@campus.com",
+    "role": "staff",
+    "dept": "IT",
+    "password": "$2a$10$vHyv8tOH0mRHKgwTgOeLeOf/OH.9FqteeIj4hcJTyFbRUQEOsuFP6"
+  },
+  {
+    "id": "mvq6n9qrb2ao",
+    "name": "Hostel Team",
+    "email": "hostel@campus.com",
+    "role": "staff",
+    "dept": "Hostel",
+    "password": "$2a$10$gsCvtErjhsKJhHRhO.cMU.OWaB90TgfSU/xXJPnaKK49yPZzqIxca"
+  },
+  {
+    "id": "mvq6n9theilt",
+    "name": "Maintenance Team",
+    "email": "maintenance@campus.com",
+    "role": "staff",
+    "dept": "Maintenance",
+    "password": "$2a$10$xj/ZeD5rlDQF8fhaJmyOvuHkK0Wzf4hDq/VYgLqgkgytKQhkVCyWa"
+  },
+  {
+    "id": "mvq6n9wdad0c",
+    "name": "Demo Student",
+    "email": "student@campus.com",
+    "role": "student",
+    "password": "$2a$10$/plTbvK.tE29N.06LgFnsOvj7rVMHwzkIzGjng56kjSKZQR3tyWJO"
+  },
+  {
+    "id": "mvq6s7h3sspx",
+    "name": "payal",
+    "email": "gochhipayal2@gmail.com",
+    "role": "student",
+    "password": "$2a$10$IL8r479gzl2TmEDNYq5bvO.u2EU1oU4ifcdrvQ.zouzoYBQjsETqO"
+  }
+]

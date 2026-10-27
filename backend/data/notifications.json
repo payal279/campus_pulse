@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mvq6w0qljcvh",
+    "userId": "mvq6s7h3sspx",
+    "title": "Complaint In Progress",
+    "message": "\"wifi is not working at block C\" is now In Progress.",
+    "read": true,
+    "createdAt": "2026-10-27T04:32:34.749Z"
+  },
+  {
+    "id": "mvq6xs5kmlxh",
+    "userId": "mvq6s7h3sspx",
+    "title": "Complaint Resolved",
+    "message": "\"wifi is not working at block C\" is now Resolved. Reply: resolvedddddddddddddddd",
+    "read": true,
+    "createdAt": "2026-10-27T04:33:56.936Z"
+  },
+  {
+    "id": "mvq6zl8ep4qx",
+    "userId": "mvq6s7h3sspx",
+    "title": "Complaint Resolved",
+    "message": "\"wifi is not working at block C\" is now Resolved. Reply: resolvedddddddddddddddd",
+    "read": true,
+    "createdAt": "2026-10-27T04:35:21.278Z"
+  }
+]

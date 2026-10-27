@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusPulse - Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-role="student">
+  <main id="authView" class="auth">
+    <section class="auth-art">
+      <div class="auth-top"><button class="theme" data-theme-toggle type="button">Dark mode</button></div>
+      <svg class="crest" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 56 12v20c0 14-10 24-24 29C18 56 8 46 8 32V12z" fill="#b8923a"/><path d="M32 8 51 15v17c0 11-8 19-19 24-11-5-19-13-19-24V15z" fill="#0b2a5b" stroke="#ffffff22"/><path d="M32 18l3.5 7.5 8 1-6 5.5 1.7 8L32 36l-7.2 4 1.7-8-6-5.5 8-1z" fill="#d9c48a"/></svg>
+      <div><span class="college" style="margin-bottom:.4rem"></span><h1 class="portal-name"></h1></div>
+      <p>One place to lodge grievances, follow their progress and read official notices.</p>
+      <ul><li>Complaints are prioritised automatically</li><li>Duplicate reports are merged into one issue</li><li>Track status and read replies from the grievance cell</li></ul>
+    </section>
+    <section class="auth-card">
+      <div class="tabs"><button id="tabLogin" class="tab active" type="button">Student login</button><button id="tabRegister" class="tab" type="button">New registration</button></div>
+      <form id="loginForm" class="form">
+        <label>Email<input type="email" name="email" placeholder="you@college.edu" /></label>
+        <label>Password<input type="password" name="password" placeholder="Your password" /></label>
+        <div><button class="btn primary" type="submit">Log in</button></div>
+        <p class="hint">Staff member? <a class="switch" href="admin.html">Open the administration portal</a></p>
+      </form>
+      <form id="registerForm" class="form hidden">
+        <label>Full name<input type="text" name="name" placeholder="Priya Sharma" /></label>
+        <label>Email<input type="email" name="email" placeholder="you@college.edu" /></label>
+        <label>Password<input type="password" name="password" placeholder="At least 6 characters" /></label>
+        <div><button class="btn primary" type="submit">Register</button></div>
+      </form>
+    </section>
+  </main>
+  <div id="appView" class="hidden">
+    <div class="utility"><div class="wrap"><span id="todayDate"></span><span>Helpline: 1800-000-0000 &nbsp;|&nbsp; grievance@campus.edu</span><button class="theme" data-theme-toggle type="button">Dark mode</button></div></div>
+    <header class="masthead"><div class="wrap">
+      <svg class="crest" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 56 12v20c0 14-10 24-24 29C18 56 8 46 8 32V12z" fill="#b8923a"/><path d="M32 8 51 15v17c0 11-8 19-19 24-11-5-19-13-19-24V15z" fill="#0b2a5b" stroke="#ffffff22"/><path d="M32 18l3.5 7.5 8 1-6 5.5 1.7 8L32 36l-7.2 4 1.7-8-6-5.5 8-1z" fill="#d9c48a"/></svg>
+      <div><span class="college"></span><h1 class="portal-name"></h1></div>
+      <div class="who"><div class="bellwrap"><button id="bell" class="bell" type="button" aria-label="Notifications">&#128276;<span id="bellCount" class="dot hidden">0</span></button><div id="bellMenu" class="bellmenu hidden"></div></div>
+      <div class="avatar" id="meAvatar"></div><div><strong id="meName"></strong><small id="meRole"></small></div><button id="logoutBtn" class="btn ghost" type="button">Log out</button></div>
+    </div></header>
+    <nav class="menu" aria-label="Main menu"><div class="wrap">
+      <button class="nav active" data-view="home" type="button">Dashboard</button>
+      <button class="nav" data-view="complaints" type="button">Complaints</button>
+      <button class="nav student-only" data-view="community" type="button">Community</button>
+      <button class="nav" data-view="notices" type="button">Notice Board</button>
+      <button class="nav" data-view="events" type="button">Events</button>
+      <button class="nav admin-only" data-view="users" type="button">Students</button>
+    </div></nav>
+
+    <main class="content">
+      <div class="crumb" id="crumb"></div>
+
+      <div id="view-home" class="view"><header class="page-head"><div><h2 id="homeTitle"></h2><p id="homeSub"></p></div></header><div id="homeBox"></div></div>
+
+      <div id="view-complaints" class="view hidden">
+        <header class="page-head"><div><h2 id="complaintsTitle">Complaints</h2><p>Every grievance is tracked from submission to resolution.</p></div>
+          <div class="filters"><input id="searchBox" type="search" placeholder="Search complaints" />
+            <select id="statusFilter"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option><option>Overdue</option></select>
+            <select id="deptFilter" class="admin-only"><option value="">All departments</option><option value="none">Unassigned</option><option>Electrical</option><option>IT</option><option>Hostel</option><option>Maintenance</option><option>Academic</option></select></div></header>
+        <form id="complaintForm" class="panel student-only">
+          <h3>Lodge a new grievance</h3>
+          <div class="body">
+            <div class="grid3">
+              <label>Subject<input name="title" placeholder="e.g. WiFi not working in Block C" /></label>
+              <label>Category<select name="category"><option value="Auto">Auto-detect</option><option>Hostel</option><option>WiFi</option><option>Classroom</option><option>Library</option><option>Canteen</option><option>Other</option></select></label>
+              <label>Location<select name="location"><option value="Auto">Auto-detect</option><option>Block A</option><option>Block B</option><option>Block C</option><option>Block D</option><option>Hostel 1</option><option>Hostel 2</option><option>Library</option><option>Canteen</option><option>Other</option></select></label>
+            </div>
+            <label>Details of the grievance<textarea name="description" rows="3" placeholder="Where, since when, and how it affects you"></textarea></label>
+            <div class="triage-hint" id="triageHint">Smart triage will suggest the category, priority and location as you type.</div>
+            <label>Attachment <small>(photo or PDF, optional, max 2 MB)</small><input type="file" name="attachment" accept=".png,.jpg,.jpeg,.pdf" /></label>
+            <label class="check"><input type="checkbox" name="anonymous" /><span><b>Submit anonymously.</b> Your name is hidden from the grievance cell and staff (use for sensitive matters such as ragging or harassment).</span></label>
+            <label class="check"><input type="checkbox" name="public" /><span><b>Show on the community board</b> so other students can support it with &ldquo;Me too&rdquo;. Your name is never shown.</span></label>
+            <div><button class="btn primary" type="submit">Submit grievance</button></div>
+          </div>
+        </form>
+        <div id="complaintList" class="list"></div>
+      </div>
+
+      <div id="view-community" class="view hidden">
+        <header class="page-head"><div><h2>Community Board</h2><p>Open issues shared by students. Press &ldquo;Me too&rdquo; if you face the same problem; many supporters help the cell prioritise.</p></div></header>
+        <div id="communityList" class="list"></div>
+      </div>
+
+      <div id="view-notices" class="view hidden">
+        <header class="page-head"><div><h2>Notice Board</h2><p>Official circulars and updates.</p></div><div class="filters"><input id="noticeSearch" type="search" placeholder="Search notices" /></div></header>
+        <form id="noticeForm" class="panel admin-only"><h3>Publish a notice</h3><div class="body">
+          <label>Title<input name="title" placeholder="Mid-term schedule released" /></label>
+          <label>Details<textarea name="body" rows="3" placeholder="What should students know?"></textarea></label>
+          <div><button class="btn primary" type="submit">Publish notice</button></div></div></form>
+        <div id="noticeList" class="list"></div>
+      </div>
+
+      <div id="view-events" class="view hidden">
+        <header class="page-head"><div><h2>Campus Events</h2><p>Programmes and activities on campus.</p></div></header>
+        <form id="eventForm" class="panel admin-only"><h3>Add an event</h3><div class="body">
+          <div class="grid2"><label>Title<input name="title" placeholder="Tech Fest Kickoff" /></label><label>Date<input type="date" name="date" /></label></div>
+          <label>Venue<input name="venue" placeholder="Main Auditorium" /></label>
+          <label>Description<textarea name="description" rows="2"></textarea></label>
+          <div><button class="btn primary" type="submit">Add event</button></div></div></form>
+        <div id="eventList" class="list"></div>
+      </div>
+
+      <div id="view-users" class="view hidden"><header class="page-head"><div><h2>Registered Students</h2><p>Student accounts on the portal.</p></div></header><div id="userList"></div></div>
+    </main>
+    <footer class="footer"><span class="college"></span> &middot; <span class="portal-name"></span> &middot; Academic project (BEE-II)</footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/config.js"></script>
+  <script>window.PORTAL = "student";</script>
+  <script src="js/app.js"></script>
+</body>
+</html>
