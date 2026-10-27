@@ -22,5 +22,13 @@
     "message": "\"wifi is not working at block C\" is now Resolved. Reply: resolvedddddddddddddddd",
     "read": true,
     "createdAt": "2026-10-27T04:35:21.278Z"
+  },
+  {
+    "id": "mvqytarfd79n",
+    "userId": "mvq6n9wdad0c",
+    "title": "Complaint Pending",
+    "message": "\"Block C internet very slow\" is now Pending.",
+    "read": false,
+    "createdAt": "2026-10-27T17:34:17.019Z"
   }
 ]

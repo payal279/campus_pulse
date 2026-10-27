@@ -10,6 +10,32 @@ const { asyncHandler } = require("../middleware/errors");
 
 const router = express.Router();
 
+const validateCredentials = (req, res, next) => {
+  const { email, password } = req.body || {};
+
+  if (typeof email !== "string" || !email.trim()) {
+    return res.status(400).json({
+      error: "Email is required"
+    });
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return res.status(400).json({
+      error: "Enter a valid email"
+    });
+  }
+
+  // Don't trim passwords: spaces may be part of a password.
+  if (typeof password !== "string" || password.length === 0) {
+    return res.status(400).json({
+      error: "Password is required"
+    });
+  }
+
+  next();
+};
+
+
 const makeToken = (u) => jwt.sign({ id: u.id, name: u.name, role: u.role, dept: u.dept }, JWT_SECRET, { expiresIn: JWT_EXPIRES });
 const publicUser = ({ id, name, email, role, dept }) => ({ id, name, email, role, dept });
 
@@ -40,6 +66,7 @@ router.post(
 // POST /api/auth/login
 router.post(
   "/login",
+  validateCredentials,
   asyncHandler(async (req, res) => {
     const users = await db.read("users");
     const user = users.find((u) => u.email === String(req.body.email || "").toLowerCase());
@@ -54,6 +81,7 @@ router.post(
 // POST /api/auth/admin-login  - separate door for the admin portal (students are refused)
 router.post(
   "/admin-login",
+  validateCredentials,
   asyncHandler(async (req, res) => {
     const users = await db.read("users");
     const user = users.find((u) => u.email === String(req.body.email || "").toLowerCase());

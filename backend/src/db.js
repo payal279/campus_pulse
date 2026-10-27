@@ -15,10 +15,32 @@ async function read(name) {
   }
 }
 
+
 async function write(name, data) {
   await fs.mkdir(DIR, { recursive: true });
-  await fs.writeFile(fileOf(name), JSON.stringify(data, null, 2)); // object -> JSON text
+
+  const target = fileOf(name);
+  const temp = `${target}.${process.pid}.${Date.now()}.tmp`;
+
+  try {
+    // First write the complete data to a temporary file.
+    const content = JSON.stringify(data, null, 2);
+    await fs.writeFile(temp, content, { flag: "wx" });
+
+    // Replace the target only after the temporary file is ready.
+    await fs.rename(temp, target);
+  } catch (err) {
+    // Clean up a temporary file if the write or rename fails.
+    try {
+      await fs.unlink(temp);
+    } catch {
+      // Ignore cleanup errors; preserve the original error.
+    }
+
+    throw err;
+  }
 }
+
 
 const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
