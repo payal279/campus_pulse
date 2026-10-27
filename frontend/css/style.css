@@ -130,7 +130,7 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--prima
 @media print { .utility,.menu,.actions,.footer { display:none; } }
 
 /* ---------- v2 features: staff, SLA, anonymous, community, bell ---------- */
-body[data-urole="staff"] .admin-only { display:none !important; }
+body[data-role="staff"] .admin-only { display:none !important; }
 .check { display:flex; gap:.6rem; align-items:flex-start; font-weight:400; font-size:.92rem; } .check input { width:auto; margin-top:.3rem; flex:none; }
 .badge.overdue { background:var(--urgent); color:#fff; animation:blink 1.6s ease-in-out infinite; } .badge.ontime { background:var(--zebra); color:var(--muted); border:1px solid var(--line); } .badge.anon { background:#4b3a7a; color:#fff; }
 @keyframes blink { 50% { opacity:.65; } }

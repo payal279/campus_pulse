@@ -94,7 +94,7 @@ function showApp() {
   $("#meName").textContent = user.name;
   $("#meRole").textContent = user.role;
   $("#meAvatar").textContent = user.name[0].toUpperCase();
-  document.body.dataset.urole = user.role; // "student", "admin" or "staff": CSS hides what this role may not use
+  document.body.dataset.role = user.role; // "student", "admin" or "staff": CSS hides what this role may not use
   $("#complaintsTitle").textContent = user.role === "admin" ? "All Complaints" : user.role === "staff" ? `${user.dept} Team Complaints` : "My Complaints";
   connectLive(); loadBell();
   openView("home");

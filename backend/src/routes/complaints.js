@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const multer = require("multer");
+const mime = require("mime-types");
 const db = require("../db");
 const bus = require("../events");
 const { authenticate, authorize } = require("../middleware/auth");
@@ -13,17 +14,43 @@ const CATEGORIES = ["Hostel", "WiFi", "Classroom", "Library", "Canteen", "Other"
 const STATUSES = ["Pending", "In Progress", "Resolved"];
 
 // MULTER = middleware for multipart/form-data (file upload)
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: path.join(__dirname, "..", "..", "uploads"),
-    filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
+    filename: (req, file, cb) => {
+      const ext = path.extname(file.originalname).toLowerCase();
+      cb(null, `${require("crypto").randomUUID()}${ext}`);
+    }
   }),
-  limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB
+
+  limits: {
+    fileSize: 2 * 1024 * 1024, // 2 MB
+    files: 1
+  },
+
   fileFilter: (req, file, cb) => {
-    const ok = /\.(png|jpe?g|pdf)$/i.test(file.originalname);
-    ok ? cb(null, true) : cb({ status: 400, message: "Only PNG, JPG or PDF allowed" });
+    const allowed = {
+      ".png": ["image/png"],
+      ".jpg": ["image/jpeg"],
+      ".jpeg": ["image/jpeg"],
+      ".pdf": ["application/pdf"]
+    };
+
+    const ext = path.extname(file.originalname).toLowerCase();
+    const allowedMimes = allowed[ext];
+
+    if (!allowedMimes || !allowedMimes.includes(file.mimetype)) {
+      return cb({
+        status: 400,
+        message: "Only PNG, JPG or PDF files with matching MIME types are allowed"
+      });
+    }
+
+    cb(null, true);
   }
 });
+
 
 router.use(authenticate); // every route below needs a valid token
 

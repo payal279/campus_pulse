@@ -51,5 +51,12 @@
     "email": "gochhipayal2@gmail.com",
     "role": "student",
     "password": "$2a$10$IL8r479gzl2TmEDNYq5bvO.u2EU1oU4ifcdrvQ.zouzoYBQjsETqO"
+  },
+  {
+    "id": "mvquefcfcxyn",
+    "name": "Prabhleen Kaur",
+    "email": "prabhleen0549.becse24@chitkara.edu.in",
+    "role": "student",
+    "password": "$2a$10$vienYHyilEEcYxwaG50sP.jQQ0ACp1an9oct/dODsYDG.rBmC0iIu"
   }
 ]
